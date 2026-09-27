@@ -10,9 +10,15 @@ class RegisterSerializer(serializers.Serializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    channel_handle = serializers.SerializerMethodField()
+
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'bio']
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'bio', 'channel_handle']
+
+    def get_channel_handle(self, user):
+        channel = getattr(user, 'channel', None)
+        return channel.handle if channel else None
 
 
 class UpdateProfileSerializer(serializers.ModelSerializer):

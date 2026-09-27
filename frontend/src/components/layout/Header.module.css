@@ -36,6 +36,17 @@
   gap: 12px;
 }
 
+.link {
+  padding: 7px 12px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.link:hover {
+  background: var(--bg-hover);
+}
+
 .avatar {
   display: grid;
   place-items: center;

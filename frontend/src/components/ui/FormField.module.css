@@ -23,6 +23,13 @@
   border-color: var(--accent);
 }
 
+.multiline {
+  height: auto;
+  min-height: 110px;
+  padding: 10px 14px;
+  resize: vertical;
+}
+
 .invalid {
   border-color: var(--danger);
 }

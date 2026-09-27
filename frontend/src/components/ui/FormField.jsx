@@ -1,10 +1,13 @@
 import styles from './FormField.module.css'
 
-export default function FormField({ label, error, ...inputProps }) {
+export default function FormField({ label, error, multiline = false, ...inputProps }) {
+  const Control = multiline ? 'textarea' : 'input'
+  const className = [styles.input, multiline && styles.multiline, error && styles.invalid].filter(Boolean).join(' ')
+
   return (
     <label className={styles.field}>
       <span className={styles.label}>{label}</span>
-      <input className={error ? `${styles.input} ${styles.invalid}` : styles.input} {...inputProps} />
+      <Control className={className} {...inputProps} />
       {error && <span className={styles.error}>{error}</span>}
     </label>
   )
