@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from apps.channels.models import Channel
+from apps.core.validators import max_file_size
 
 
 class ChannelCreateSerializer(serializers.Serializer):
@@ -15,10 +16,14 @@ class ChannelCreateSerializer(serializers.Serializer):
 class ChannelUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Channel
-        fields = ['name', 'description']
+        fields = ['name', 'description', 'avatar', 'banner']
+        extra_kwargs = {
+            'avatar': {'validators': [max_file_size(2)]},
+            'banner': {'validators': [max_file_size(6)]},
+        }
 
 
 class ChannelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Channel
-        fields = ['id', 'handle', 'name', 'description', 'created_at']
+        fields = ['id', 'handle', 'name', 'description', 'avatar', 'banner', 'created_at']
