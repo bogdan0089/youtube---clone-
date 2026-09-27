@@ -15,3 +15,11 @@ class RegisterView(APIView):
         serializer.is_valid(raise_exception=True)
         user = register_user(**serializer.validated_data)
         return Response(UserSerializer(user).data, status=status.HTTP_201_CREATED)
+
+
+class MeView(APIView):
+    def get(self, request):
+        return Response(UserSerializer(request.user).data)
+
+
+    
