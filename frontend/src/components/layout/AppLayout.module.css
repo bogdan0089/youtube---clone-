@@ -1,0 +1,10 @@
+.body {
+  display: flex;
+  padding-top: var(--header-height);
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: 24px;
+}

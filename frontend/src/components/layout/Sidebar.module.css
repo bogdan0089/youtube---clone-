@@ -1,0 +1,39 @@
+.sidebar {
+  position: sticky;
+  top: var(--header-height);
+  flex-shrink: 0;
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--header-height));
+  padding: 12px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: var(--radius);
+  font-size: 14px;
+}
+
+.link:hover {
+  background: var(--bg-hover);
+}
+
+.active {
+  background: var(--bg-hover);
+  font-weight: 500;
+}
+
+.icon {
+  width: 24px;
+  font-size: 18px;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .sidebar {
+    display: none;
+  }
+}
