@@ -16,6 +16,9 @@ export default function Header() {
       <div className={styles.actions}>
         {isLoading ? null : user ? (
           <>
+            <Link to={user.channel_handle ? `/@${user.channel_handle}` : '/channel/new'} className={styles.link}>
+              {user.channel_handle ? 'Мій канал' : 'Створити канал'}
+            </Link>
             <span className={styles.avatar} title={user.username}>
               {user.username[0].toUpperCase()}
             </span>

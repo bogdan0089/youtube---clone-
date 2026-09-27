@@ -20,10 +20,17 @@ export function AuthProvider({ children }) {
       .finally(() => setIsLoading(false))
   }, [])
 
-  const login = useCallback(async (credentials) => {
-    tokens.set(await authApi.login(credentials))
+  const refreshUser = useCallback(async () => {
     setUser(await authApi.getMe())
   }, [])
+
+  const login = useCallback(
+    async (credentials) => {
+      tokens.set(await authApi.login(credentials))
+      await refreshUser()
+    },
+    [refreshUser],
+  )
 
   const logout = useCallback(() => {
     tokens.clear()
@@ -31,8 +38,8 @@ export function AuthProvider({ children }) {
   }, [])
 
   const value = useMemo(
-    () => ({ user, isLoading, login, logout, setUser }),
-    [user, isLoading, login, logout],
+    () => ({ user, isLoading, login, logout, refreshUser }),
+    [user, isLoading, login, logout, refreshUser],
   )
 
   return <AuthContext value={value}>{children}</AuthContext>
