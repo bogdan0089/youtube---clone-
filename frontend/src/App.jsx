@@ -1,21 +1,24 @@
-import { useEffect, useState } from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-function App() {
-  const [status, setStatus] = useState('loading...')
+import AppLayout from './components/layout/AppLayout'
+import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
+import NotFoundPage from './pages/NotFoundPage'
+import RegisterPage from './pages/RegisterPage'
 
-  useEffect(() => {
-    fetch('/api/health/')
-      .then((response) => response.json())
-      .then((data) => setStatus(data.status))
-      .catch(() => setStatus('backend is down'))
-  }, [])
+const router = createBrowserRouter([
+  { path: '/login', element: <LoginPage /> },
+  { path: '/register', element: <RegisterPage /> },
+  {
+    path: '/',
+    element: <AppLayout />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: '*', element: <NotFoundPage /> },
+    ],
+  },
+])
 
-  return (
-    <main>
-      <h1>YouTube Clone</h1>
-      <p>Backend: {status}</p>
-    </main>
-  )
+export default function App() {
+  return <RouterProvider router={router} />
 }
-
-export default App

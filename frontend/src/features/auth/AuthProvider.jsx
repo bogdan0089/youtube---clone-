@@ -1,0 +1,39 @@
+import { useCallback, useEffect, useMemo, useState } from 'react'
+
+import { setOnSessionExpired } from '../../api/client'
+import { tokens } from '../../api/tokens'
+import { authApi } from './api'
+import { AuthContext } from './authContext'
+
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null)
+  const [isLoading, setIsLoading] = useState(Boolean(tokens.getAccess()))
+
+  useEffect(() => {
+    setOnSessionExpired(() => setUser(null))
+    if (!tokens.getAccess()) return
+
+    authApi
+      .getMe()
+      .then(setUser)
+      .catch(() => tokens.clear())
+      .finally(() => setIsLoading(false))
+  }, [])
+
+  const login = useCallback(async (credentials) => {
+    tokens.set(await authApi.login(credentials))
+    setUser(await authApi.getMe())
+  }, [])
+
+  const logout = useCallback(() => {
+    tokens.clear()
+    setUser(null)
+  }, [])
+
+  const value = useMemo(
+    () => ({ user, isLoading, login, logout, setUser }),
+    [user, isLoading, login, logout],
+  )
+
+  return <AuthContext value={value}>{children}</AuthContext>
+}

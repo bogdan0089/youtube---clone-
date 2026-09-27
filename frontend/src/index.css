@@ -1,7 +1,35 @@
+:root {
+  --bg: #0f0f0f;
+  --bg-elevated: #212121;
+  --bg-hover: #272727;
+  --border: #303030;
+  --text: #f1f1f1;
+  --text-secondary: #aaaaaa;
+  --accent: #3ea6ff;
+  --danger: #ff4e45;
+  --header-height: 56px;
+  --sidebar-width: 240px;
+  --radius: 10px;
+
+  font-family: Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  padding: 24px;
-  font-family: Roboto, Arial, sans-serif;
-  background: #0f0f0f;
-  color: #f1f1f1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
 }

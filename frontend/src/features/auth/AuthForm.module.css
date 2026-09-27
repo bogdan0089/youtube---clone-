@@ -1,0 +1,59 @@
+.page {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  max-width: 420px;
+  padding: 36px 32px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--bg-elevated);
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.formError {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba(255, 78, 69, 0.12);
+  color: var(--danger);
+  font-size: 14px;
+}
+
+.submit {
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  background: var(--accent);
+  color: #0f0f0f;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.switch {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.switch a {
+  color: var(--accent);
+}
