@@ -34,7 +34,8 @@ api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const original = error.config
-    const canRefresh = error.response?.status === 401 && tokens.getRefresh() && !original._retried
+    const canRefresh =
+      error.response?.status === 401 && tokens.getRefresh() && !original._retried && !original.skipRefresh
     if (!canRefresh) return Promise.reject(error)
 
     original._retried = true
