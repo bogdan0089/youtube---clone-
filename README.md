@@ -61,10 +61,10 @@ cd backend
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
-python manage.py runserver
+python manage.py runserver 8010
 ```
 
-Перевірка: http://127.0.0.1:8000/api/health/ → `{"status": "ok"}`
+Перевірка: http://127.0.0.1:8010/api/health/ → `{"status": "ok"}`
 
 Якщо `activate` видає помилку про scripts:
 
