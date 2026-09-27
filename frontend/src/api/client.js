@@ -11,6 +11,11 @@ api.interceptors.request.use((config) => {
 })
 
 let refreshPromise = null
+let onSessionExpired = () => {}
+
+export function setOnSessionExpired(callback) {
+  onSessionExpired = callback
+}
 
 function refreshAccessToken() {
   refreshPromise ??= axios
@@ -39,6 +44,7 @@ api.interceptors.response.use(
       return api(original)
     } catch (refreshError) {
       tokens.clear()
+      onSessionExpired()
       return Promise.reject(refreshError)
     }
   },
