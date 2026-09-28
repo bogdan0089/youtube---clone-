@@ -8,6 +8,7 @@ urlpatterns = [
     path('api/', include('apps.core.urls')),
     path('api/users/', include('apps.users.urls')),
     path('api/channels/', include('apps.channels.urls')),
+    path('api/videos/', include('apps.videos.urls')),
 ]
 
 if settings.DEBUG:
